@@ -1,0 +1,3 @@
+// Firebase backup removed: project now uses Appwrite for database and storage.
+
+export {};
