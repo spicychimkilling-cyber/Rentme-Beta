@@ -17,16 +17,14 @@ export function ListItem() {
   const navigate = useNavigate();
   const { user, isAuthenticated } = useAuth();
   const [currentStep, setCurrentStep] = useState(1);
-
-  // Form data
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('');
   const [price, setPrice] = useState('');
   const [location, setLocation] = useState('');
   const [features, setFeatures] = useState('');
-  const [images, setImages] = useState<string[]>([]); // preview URLs shown in UI
-  const [fileIds, setFileIds] = useState<string[]>([]); // Appwrite file IDs to store in DB
+  const [images, setImages] = useState<string[]>([]); 
+  const [fileIds, setFileIds] = useState<string[]>([]); 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   if (!isAuthenticated) {
@@ -69,17 +67,15 @@ export function ListItem() {
         }
 
         try {
-          // Upload to Appwrite storage
+          
           const res = await storage.createFile(BUCKET_IMAGES_ID, ID.unique(), file);
           const fileId = res.$id;
           uploadedFileIds.push(fileId);
-          // Get preview URL to show in UI
+          
           try {
-            // Use getFileView to avoid image-transformation API calls that may be blocked on some plans
             const viewUrl = storage.getFileView(BUCKET_IMAGES_ID, fileId) as string;
             uploadedUrls.push(viewUrl);
           } catch {
-            // If view URL not available, push empty string placeholder
             uploadedUrls.push('');
           }
         } catch (storageError: any) {
@@ -123,18 +119,15 @@ export function ListItem() {
     try {
       toast.info('Publishing listing...');
 
-      // Save to Appwrite database
+    
       await databases.createDocument(DATABASE_ID, COLLECTION_ITEMS_ID, ID.unique(), {
         title,
         desc: description,
         category,
         price: parseFloat(price),
         location,
-        // store file IDs as CSV so Appwrite receives a string (collection expects string)
         fileIds: fileIds.join(','),
-        // Appwrite collection requires an `images` attribute — store as CSV of fileIds
         images: fileIds.join(','),
-        // Store features as CSV string to match Appwrite 'string' attribute
         features: features.split('\n').map((f) => f.trim()).filter(Boolean).join(','),
         ownerId: user?.id,
         ownerName: user?.name,
@@ -171,7 +164,6 @@ export function ListItem() {
           <p className="text-gray-600">Share your items with the community and earn</p>
         </div>
 
-        {/* Progress Steps */}
         <div className="mb-8">
           <div className="flex items-center justify-between">
             {steps.map((step, index) => (

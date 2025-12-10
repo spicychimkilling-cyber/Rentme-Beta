@@ -63,7 +63,6 @@ export function LoginSignup() {
       return;
     }
 
-    // basic trimming and validation
     const name = signupName.trim();
     const email = signupEmail.trim();
     const password = signupPassword;
