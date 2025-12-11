@@ -8,7 +8,7 @@ import { Badge } from './ui/badge';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
 import { Slider } from './ui/slider';
 import { categories, locations, mockItems, type Item } from '../lib/mockData';
-import { DATABASE_ID, COLLECTION_ITEMS_ID, BUCKET_IMAGES_ID, storage, databases } from '../lib/appwrite';
+import { DATABASE_ID, COLLECTION_ITEMS_ID, BUCKET_IMAGES_ID, storage, databases, account } from '../lib/appwrite';
 import { motion } from "framer-motion"; 
 
 export function BrowseItems() {
@@ -24,12 +24,25 @@ export function BrowseItems() {
   const [filteredItems, setFilteredItems] = useState<Item[]>([]);
   const [loading, setLoading] = useState(true);
 
+  const ensureBrowseSession = async () => {
+    try {
+      await account.get();
+    } catch {
+      try {
+        await account.createAnonymousSession();
+      } catch (err) {
+        // If anonymous session fails, we will fall back to mock data
+      }
+    }
+  };
+
   useEffect(() => {
     fetchItems();
   }, []);
 
   const fetchItems = async () => {
     try {
+      await ensureBrowseSession();
       // Fetch items from Appwrite
       const res = await databases.listDocuments(DATABASE_ID, COLLECTION_ITEMS_ID);
       const appwriteItems: Item[] = res.documents.map((doc: any) => {
