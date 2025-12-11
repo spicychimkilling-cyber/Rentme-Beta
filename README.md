@@ -1,5 +1,20 @@
 
-  Run `npm i` to install the dependencies.
+ Run `npm i` to install the dependencies.
 
-  Run `npm run dev` to start the development server.
+ Run `npm run dev` to start the development server.
+
+## Environment variables (Vite / GitHub Pages)
+
+Create a `.env` (or set build-time secrets in your CI) with:
+
+```
+VITE_APPWRITE_ENDPOINT=https://sgp.cloud.appwrite.io/v1
+VITE_APPWRITE_PROJECT=6933d803000db497f286
+VITE_APPWRITE_DATABASE_ID=6933da8a001c384ca741
+VITE_APPWRITE_COLLECTION_ITEMS=6933e0e4001e651ea136
+VITE_APPWRITE_COLLECTION_BOOKINGS=693402f4001a4a4788d3
+VITE_APPWRITE_BUCKET_IMAGES=6933dc0a0020bf3caa65
+```
+
+For GitHub Pages, set these as repo secrets and expose them to the build step.
   
