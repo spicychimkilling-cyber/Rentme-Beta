@@ -18,7 +18,7 @@ export function Navbar() {
   ];
 
   const isActive = (path: string) => location.pathname === path;
-  const isAuthPage = location.pathname === '/login';
+  const isAuthPage = location.pathname.startsWith('/login');
 
   return (
     <nav className="sticky top-0 z-50 bg-white border-b shadow-sm">

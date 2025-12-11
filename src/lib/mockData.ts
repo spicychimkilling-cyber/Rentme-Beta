@@ -25,6 +25,8 @@ export interface Booking {
   renterId: string;
 }
 
+const withBase = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^\/+/, '')}`;
+
 export const categories = [
   { name: 'Electronics', icon: 'Laptop'},
   { name: 'Vehicles', icon: 'Car'},
@@ -45,16 +47,14 @@ export const locations = [
   'Samtenling',
 ];
 
-  export const mockItems: Item[] = [
-    {
-    id: 'room_1',
+export const mockItems: Item[] = [
+  {
+  id: 'room_1',
     title: 'Hotel Room',
     description: 'Spacious room with 2 triple-size beds, suitable for up to 4 people. Includes a private toilet and essential amenities. Located in the heart of Gelephu Town.',
     category: 'Rooms',
     price: 1500,
-    images: [
-  "/room1-1.png"
-  ],
+    images: [withBase('room1-1.png')],
     location: 'Gelephu Town',
     ownerId: 'owner_1',
     ownerName: 'Hotel',
@@ -74,7 +74,7 @@ export const locations = [
   description: 'A clean and comfortable single room with a queen-size bed suitable for up to two people. Includes attached toilet and essential amenities.',
   category: 'Rooms',
   price: 2000,
-  images: ["/s1.jpg", "/toilet-1.jpg"],
+  images: [withBase('s1.jpg'), withBase('toilet-1.jpg')],
   location: 'Gelephu Market Area',
   ownerId: 'owner_2',
   ownerName: 'Pema Properties',
@@ -94,7 +94,7 @@ export const locations = [
   description: 'Comfortable single room featuring a queen-size bed and a private attached toilet. Ideal for solo travelers seeking an affordable and clean stay.',
   category: 'Rooms',
   price: 800,
-  images: ["/s2.jpg", "/queen.jpg"],
+  images: [withBase('s2.jpg'), withBase('queen.jpg')],
   location: 'Gelephu Town',
   ownerId: 'owner_3',
   ownerName: 'Karma Guest House',
@@ -116,7 +116,7 @@ export const locations = [
   description: 'A comfortable and spacious room suitable for up to three guests, featuring double-size beds, a TV, and an attached toilet. Perfect for small groups or families.',
   category: 'Rooms',
   price: 3500,
-  images: ["/room2-1.jpg"],
+  images: [withBase('room2-1.jpg')],
   location: 'Gelephu Town',
   ownerId: 'owner_4',
   ownerName: 'Mountain View Resort',
