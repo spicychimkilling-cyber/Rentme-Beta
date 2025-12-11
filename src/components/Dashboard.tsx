@@ -319,7 +319,7 @@ export function Dashboard() {
         </motion.div>
 
         <Tabs defaultValue={defaultTab} className="space-y-6">
-          <TabsList className="grid w-full grid-cols-3 max-w-md">
+          <TabsList className="w-full max-w-md">
             <TabsTrigger value="bookings">
               My Bookings
               {ownerRequests.length > 0 && (
@@ -333,7 +333,7 @@ export function Dashboard() {
           {/* Bookings Tab */}
           <TabsContent value="bookings" className="space-y-4">
             {/* Incoming requests for item owners (always show section) */}
-            <div className="grid gap-4">
+            <div className="flex flex-col gap-3 items-start w-full">
               <h3 className="text-xl">Incoming Booking Requests</h3>
               {ownerRequests.length > 0 ? (
                 ownerRequests.map((req, idx) => (
@@ -370,8 +370,8 @@ export function Dashboard() {
                   </motion.div>
                 ))
               ) : (
-                <Card>
-                  <CardContent className="p-6 text-center">
+                <Card className="w-full">
+                  <CardContent className="p-6 text-center w-full">
                     <div className="text-gray-600 mb-2">No incoming booking requests</div>
                     <div className="text-sm text-gray-500">You'll see booking requests here when renters request your listings.</div>
                   </CardContent>

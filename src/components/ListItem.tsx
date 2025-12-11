@@ -60,9 +60,9 @@ export function ListItem() {
           continue;
         }
 
-        // Validate file size (max 5MB)
-        if (file.size > 5 * 1024 * 1024) {
-          toast.error(`${file.name} is too large. Maximum size is 5MB`);
+        // Validate file size (max 100MB)
+        if (file.size > 100 * 1024 * 1024) {
+          toast.error(`${file.name} is too large. Maximum size is 100MB`);
           continue;
         }
 
