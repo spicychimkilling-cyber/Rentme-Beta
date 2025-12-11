@@ -13,6 +13,13 @@ export function HomePage() {
   const [searchQuery, setSearchQuery] = useState('');
   const featuredItems = mockItems.slice(0, 4);
 
+  const categoriesWithCounts = categories.map((category) => ({
+    ...category,
+    count:
+      (category as any).count ??
+      mockItems.filter((item) => item.category === category.name).length,
+  }));
+
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     window.location.href = `/browse?search=${searchQuery}`;
@@ -98,7 +105,7 @@ export function HomePage() {
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {categories.map((category, index) => {
+            {categoriesWithCounts.map((category, index) => {
               const Icon = (LucideIcons as any)[category.icon] || LucideIcons.Package;
               return (
                 <motion.div
@@ -114,7 +121,9 @@ export function HomePage() {
                           <Icon className="w-8 h-8" />
                         </div>
                         <h3 className="mb-1">{category.name}</h3>
-                        <p className="text-sm text-gray-600">{category.count} items</p>
+                        <p className="text-sm text-gray-600">
+                          {category.count ?? 'New'} {category.count === 1 ? 'item' : 'items'}
+                        </p>
                       </CardContent>
                     </Card>
                   </Link>
