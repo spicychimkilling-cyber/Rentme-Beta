@@ -95,12 +95,14 @@ export function BrowseItems() {
     }
   }
 
+  const normalize = (value: string | null | undefined) => (value ?? '').toString().trim().toLowerCase();
+
   const applyFilters = () => {
     const filtered = allItems.filter((item) => {
       const matchesSearch = item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
                            item.description.toLowerCase().includes(searchQuery.toLowerCase());
-      const matchesCategory = selectedCategory === 'all' || item.category === selectedCategory;
-      const matchesLocation = selectedLocation === 'all' || item.location === selectedLocation;
+      const matchesCategory = selectedCategory === 'all' || normalize(item.category) === normalize(selectedCategory);
+      const matchesLocation = selectedLocation === 'all' || normalize(item.location) === normalize(selectedLocation);
       const matchesPrice = item.price >= priceRange[0] && item.price <= priceRange[1];
       
       return matchesSearch && matchesCategory && matchesLocation && matchesPrice;
