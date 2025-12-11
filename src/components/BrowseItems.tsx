@@ -17,6 +17,7 @@ export function BrowseItems() {
   const [selectedCategory, setSelectedCategory] = useState(searchParams.get('category') || 'all');
   const [selectedLocation, setSelectedLocation] = useState('all');
   const [priceRange, setPriceRange] = useState([0, 1000]);
+  const [maxPrice, setMaxPrice] = useState(1000);
   const [sortBy, setSortBy] = useState('featured');
   const [showFilters, setShowFilters] = useState(false);
   const [allItems, setAllItems] = useState<Item[]>([]);
@@ -61,16 +62,26 @@ export function BrowseItems() {
 
       // Combine Appwrite items with mock items if needed
       const allItems = [...appwriteItems, ...mockItems];
+      const computedMax = Math.max(1000, ...allItems.map((i) => (typeof i.price === 'number' ? i.price : Number(i.price) || 0)));
       setAllItems(allItems);
+      setMaxPrice(computedMax);
+      setPriceRange([0, computedMax]);
       setFilteredItems(allItems);
       setLoading(false);
     } catch (error: any) {
       // Silently use mock data if Appwrite is not configured
       setAllItems(mockItems);
+      const fallbackMax = Math.max(1000, ...mockItems.map((i) => i.price || 0));
+      setMaxPrice(fallbackMax);
+      setPriceRange([0, fallbackMax]);
       setFilteredItems(mockItems);
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    applyFilters();
+  }, [searchQuery, selectedCategory, selectedLocation, priceRange, allItems]);
 
   // Helper to get Appwrite image URL
   function getAppwriteImageUrl(fileId: string) {
@@ -213,8 +224,8 @@ export function BrowseItems() {
                 </label>
                 <Slider
                   min={0}
-                  max={1000}
-                  step={50}
+                  max={maxPrice}
+                  step={Math.max(25, Math.round(maxPrice / 40))}
                   value={priceRange}
                   onValueChange={setPriceRange}
                   className="w-full"
@@ -279,13 +290,13 @@ export function BrowseItems() {
             </div>
             <h3 className="text-xl mb-2">No items found</h3>
             <p className="text-gray-600 mb-6">Try adjusting your filters or search query</p>
-            <Button
+              <Button
               variant="outline"
               onClick={() => {
                 setSearchQuery('');
                 setSelectedCategory('all');
                 setSelectedLocation('all');
-                setPriceRange([0, 1000]);
+                setPriceRange([0, maxPrice]);
               }}
             >
               Clear Filters

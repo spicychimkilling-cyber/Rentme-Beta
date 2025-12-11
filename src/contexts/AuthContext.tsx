@@ -43,15 +43,20 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   // LOGIN
   const login = async (email: string, password: string) => {
-    await account.createEmailPasswordSession({ email, password });
-    await fetchUser();
+    try {
+      await account.createEmailPasswordSession({ email, password });
+      await fetchUser();
+    } catch (err) {
+      const message = (err as any)?.message || 'Login failed. Please check your credentials or connection and try again.';
+      throw new Error(message);
+    }
   };
 
   // SIGNUP
   const signup = async (name: string, email: string, password: string) => {
     try {
       await account.create(ID.unique(), email, password, name);
-      await account.createEmailPasswordSession(email, password);
+      await account.createEmailPasswordSession({ email, password });
       await fetchUser();
     } catch (err) {
       // Surface rate limit or other Appwrite errors to callers
