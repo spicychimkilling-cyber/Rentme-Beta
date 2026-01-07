@@ -10,34 +10,34 @@ interface TeamMember {
 
 const teamMembers: TeamMember[] = [
   {
-    name: "Team Member 1",
-    role: "Founder & CEO",
-    background: "Experienced entrepreneur with a passion for connecting people through innovative rental solutions. Background in technology and business development.",
-    image: "https://picsum.photos/seed/team1/150/150",
+    name: "Sonam Tshering",
+    role: "Team Lead",
+    background: "PGD in Entrepreneurial Leadership. Responsible for operations and company compliance.",
+    image: "https://picsum.photos/seed/sonam/150/150",
   },
   {
-    name: "Team Member 2",
-    role: "CTO",
-    background: "Tech visionary with expertise in full-stack development and scalable architecture. Previously led engineering teams at major tech companies.",
-    image: "https://picsum.photos/seed/team2/150/150",
+    name: "Pema Wangchuk",
+    role: "Accountant",
+    background: "B. Com in Accounts. Responsible for team accounting and financial management.",
+    image: "https://picsum.photos/seed/pema/150/150",
   },
   {
-    name: "Team Member 3",
-    role: "Head of Operations",
-    background: "Operations expert with a background in logistics and customer service. Dedicated to ensuring smooth user experiences and efficient processes.",
-    image: "https://picsum.photos/seed/team3/150/150",
+    name: "Tshering Tobgay",
+    role: "Finance & Operations",
+    background: "B. Com in Finance. Responsible for finance and operational activities.",
+    image: "https://picsum.photos/seed/tshering/150/150",
   },
   {
-    name: "Team Member 4",
-    role: "Marketing Director",
-    background: "Creative marketing strategist with experience in digital campaigns and brand building. Passionate about storytelling and community engagement.",
-    image: "https://picsum.photos/seed/team4/150/150",
+    name: "Sonam Choden",
+    role: "Web Developer",
+    background: "B.sc Tech in Computer Science and Engineering. Specializes in web development.",
+    image: "https://picsum.photos/seed/sonamc/150/150",
   },
   {
-    name: "Team Member 5",
-    role: "Customer Success Manager",
-    background: "Customer-focused professional with a background in support and relationship management. Committed to helping users achieve their goals.",
-    image: "https://picsum.photos/seed/team5/150/150",
+    name: "Sangay Yonten",
+    role: "Customer Relations & Operations",
+    background: "Master in Sustainable Development. Handles customer relations and operational tasks.",
+    image: "https://picsum.photos/seed/sangay/150/150",
   },
 ];
 
@@ -74,7 +74,7 @@ export function AboutUs() {
                       className="w-24 h-24 rounded-full mx-auto mb-4 object-cover border-4 border-blue-100"
                     />
                     <h3 className="text-xl font-semibold text-gray-900">
-                      {member.name.split(' ').map(n => n[0]).join('')} {member.name}
+                      {member.name}
                     </h3>
                     <p className="text-blue-600 font-medium">{member.role}</p>
                   </div>
@@ -84,14 +84,6 @@ export function AboutUs() {
             </motion.div>
           ))}
         </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          className="mt-16 text-center"
-        >
-        </motion.div>
       </div>
     </div>
   );
