@@ -12,6 +12,7 @@ import { HowItWorks } from './components/HowItWorks';
 import { Contact } from './components/Contact';
 import { TermsConditions } from './components/TermsConditions';
 import { PrivacyPolicy } from './components/PrivacyPolicy';
+import { AboutUs } from './components/AboutUs';
 import { useAuth } from './contexts/AuthContext';
 
 function RequireAuth({ children }: { children: ReactElement }) {
@@ -50,6 +51,7 @@ function App() {
           <Route path="/login" element={<LoginSignup />} />
           <Route path="/how-it-works" element={<HowItWorks />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/about-us" element={<AboutUs />} />
           <Route path="/terms-conditions" element={<TermsConditions />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="*" element={<Navigate to="/" replace />} />
