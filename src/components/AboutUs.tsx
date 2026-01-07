@@ -10,16 +10,16 @@ interface TeamMember {
 
 const teamMembers: TeamMember[] = [
   {
-    name: "Sonam Tshering",
+    name: "Pema Wangchuk",
     role: "Team Lead",
-    background: "PGD in Entrepreneurial Leadership. Responsible for operations and company compliance.",
-    image: "https://picsum.photos/seed/sonam/150/150",
+    background: "B. Com in Accounts. Responsible for finance and operations.",
+    image: "https://picsum.photos/seed/pema/150/150",
   },
   {
-    name: "Pema Wangchuk",
+    name: "Sonam Tshering",
     role: "Accountant",
-    background: "B. Com in Accounts. Responsible for team accounting and financial management.",
-    image: "https://picsum.photos/seed/pema/150/150",
+    background: "PGD in Entrepreneurial Leadership. Responsible for operations and company compliance.",
+    image: "https://picsum.photos/seed/sonam/150/150",
   },
   {
     name: "Tshering Tobgay",
