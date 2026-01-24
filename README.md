@@ -10,13 +10,13 @@ The application is built with modern web technologies and uses a lightweight dev
 
 ## Tech Stack
 
-TypeScript is used for application logic and structure.
+TypeScript 
 
-HTML is used for defining the layout and content.
+HTML 
 
-CSS is used for styling and responsive design.
+CSS
 
-Vite is used for development and build tooling.
+Vite 
 
   ## Running the code
 
